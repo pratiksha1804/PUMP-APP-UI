@@ -3,7 +3,7 @@ import { View, Text,TextInput,StyleSheet,TouchableOpacity,Picker,Button,SafeArea
 // import DropDownPicker from 'react-native-dropdown-picker';
 //import CalendarPicker from 'react-native-calendar-picker';
 // import DatePicker from 'react-datepicker';
-
+import DatePicker from 'react-native-datepicker';
 
 class CreateWorkorder extends Component {
   
@@ -12,6 +12,8 @@ class CreateWorkorder extends Component {
     this.state = {
       selectedValue:'',
       onValueChange:'',
+      Startdate:'01-01-2021',
+       Enddate:'01-01-2021'
       
       
       }
@@ -82,8 +84,70 @@ class CreateWorkorder extends Component {
             
               <TextInput style={styles.inputBox} placeholder='Rate'></TextInput>
               <TextInput style={styles.inputBox} placeholder='Refered By'></TextInput>
-              <TextInput style={styles.inputBox} placeholder='Start Date'></TextInput>
-              <TextInput style={styles.inputBox} placeholder='End Date'></TextInput>
+              <View style={{ flexDirection: 'row',paddingTop:10,justifyContent:"center" }}>
+  <View style={styles.datecontainer}>
+       
+       <DatePicker
+         style={styles.datePickerStyle}
+         date={this.state.Startdate} // Initial date from state
+         mode="date" // The enum of date, datetime and time
+         placeholder="select Startdate"
+         format="DD-MM-YYYY"
+         minDate="01-01-2016"
+         maxDate="01-01-2050"
+         confirmBtnText="Confirm"
+         cancelBtnText="Cancel"
+         customStyles={{
+           dateIcon: {
+            //  display: 'none',
+             position: 'absolute',
+             left: 0,
+             top: 4,
+             marginLeft: 0,
+           },
+           dateInput: {
+             marginLeft: 36,
+           },
+         }}
+         onDateChange={(date) => {
+           this.setState({Startdate:date});
+         }}
+       />
+     </View>
+  
+ 
+ <View style={styles.datecontainer}>
+       
+       <DatePicker
+         style={styles.datePickerStyle}
+         date={this.state.Enddate} // Initial date from state
+         mode="date" // The enum of date, datetime and time
+         placeholder="select Enddate"
+         format="DD-MM-YYYY"
+         minDate="01-01-2016"
+         maxDate="01-01-2050"
+         confirmBtnText="Confirm"
+         cancelBtnText="Cancel"
+         customStyles={{
+           dateIcon: {
+            //  display: 'none',
+             position: 'absolute',
+             left: 0,
+             top: 4,
+             marginLeft: 0,
+           },
+           dateInput: {
+             marginLeft: 36,
+           },
+         }}
+         onDateChange={(date) => {
+           this.setState({Enddate:date});
+         }}
+       />
+     </View>
+  
+ </View>
+
               <TextInput style={styles.inputBox} placeholder='Upload Document'></TextInput>
 
           
@@ -170,6 +234,11 @@ const styles = StyleSheet.create({
     borderRadius:10,
     borderColor: 'black',
     borderWidth: 1,
+  },
+  datePickerStyle: {
+    width: 150,
+    marginTop: 20,
   }
+
   });
 export default CreateWorkorder;
